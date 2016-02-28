@@ -1,0 +1,10 @@
+#!/bin/bash
+#Useful for monitoring the integrity of your executables and some essential files
+
+  find / -executable -type f | xargs sha1sum > $1 #Executables
+  cat /etc/passwd | sha1sum >> $1
+  cat /etc/shadow | sha1sum >> $1
+  cat /etc/sudoers | sha1sum >> $1
+
+#Use ' diff ' to view the differences at an interval you feel comfortable with
+#It would also be a good idea to add more files to this list
