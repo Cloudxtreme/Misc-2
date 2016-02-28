@@ -5,6 +5,6 @@
   cat /etc/passwd | sha1sum >> $1
   cat /etc/shadow | sha1sum >> $1
   cat /etc/sudoers | sha1sum >> $1
-
+ 
 #Use ' diff ' to view the differences at an interval you feel comfortable with
 #It would also be a good idea to add more files to this list
