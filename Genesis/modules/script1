@@ -1,0 +1,5 @@
+#This should be skipped
+    #Maybe this
+ #Tough one, probably not
+
+echo "This will be included from script1"

@@ -1,0 +1,39 @@
+#!/bin/bash
+
+DEF_MOD="$(pwd)/modules"
+DEF_NAME="genesis_script"
+DEF_LOC="$(pwd)"
+DEF_INP="#!/bin/sh"
+DEF_VAL="y"
+
+read -e -p "Specify the modules folder: " -i "$DEF_MOD" MOD
+read -e -p "Specify the generated script name: " -i "$DEF_NAME" NAME
+read -e -p "Specify the generated script location: " -i "$DEF_LOC" LOC
+read -e -p "Specify the interpreter to be used: " -i "$DEF_INP" INP
+echo -e "\nGenerating Script: $LOC/$NAME\n"
+echo "$INP" > "$LOC/$NAME"
+
+for f in $(ls "$MOD/")
+do
+    read -e -p "Include Module $f [y/n]: " -i $DEF_VAL VAL
+    if [ "$VAL" == "y" ]
+    then
+        while read line
+        do
+            LEN=${#line}
+            echo "Attempting to add $line of size $LEN"
+            if [ -n "$line" ]
+            then
+                if [ ${line:0:1} == '#' ]
+                then
+                    echo "Skipping commented line: $line"
+                else
+                    echo "$line" >> "$LOC/$NAME"
+                fi
+            fi
+        done < "$MOD/$f"
+    fi
+done
+chmod +x "$LOC/$NAME"
+echo -e "\nYour script can be found at $LOC/$NAME"
+echo "\nGenesis Completed.\n"

@@ -1,0 +1,8 @@
+#!/bin/sh
+echo '!@#$%^&*()-_+= []{} ;:""><.,//'
+echo "I am so 'complex', but all of these lines should work"
+echo "Except the one above this, but if you're running the script you don't see it"
+echo "This will be included from script1"
+echo "Inserted after script1"
+echo "Due to alphabetical order"
+echo "By the way, this will work #"

@@ -1,0 +1,6 @@
+echo 'I am alphabetically first. Yay"
+echo '!@#$%^&*()-_+= []{} ;:""><.,/\/ <- Note that the backslash still escapes as intended'
+echo "I am so 'complex', but all of these lines should work"
+
+echo "Except the one above this, but if you're running the script you don't see it"
+        #OR THE ONE BELOW IT HEHE
