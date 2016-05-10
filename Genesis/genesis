@@ -20,8 +20,6 @@ do
     then
         while read line
         do
-            LEN=${#line}
-            echo "Attempting to add $line of size $LEN"
             if [ -n "$line" ]
             then
                 if [ ${line:0:1} == '#' ]
